@@ -12,6 +12,8 @@ namespace TrackerUI
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new TournamentViewerForm());
+            Console.WriteLine("Test");
+
         }
     }
 }
