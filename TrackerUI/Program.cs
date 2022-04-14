@@ -10,6 +10,7 @@ namespace TrackerUI
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new TournamentViewForm());
+            Console.WriteLine("testHome");
         }
     }
 }
