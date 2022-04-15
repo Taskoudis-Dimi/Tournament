@@ -16,5 +16,20 @@ namespace TrackerUI
         {
             InitializeComponent();
         }
+
+        // How do we got that connection information?
+        // How do we connect to two different data sources to do the same task?
+
+        //static class for data source info
+        //interface for data sources
+
+    
+    
+    
+    
+    
+    
+    
+    
     }
 }
