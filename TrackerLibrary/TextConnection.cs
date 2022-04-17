@@ -11,7 +11,9 @@ namespace TrackerLibrary
 
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            throw new NotImplementedException();
+            model.Id = 1;
+            return model;
+
         }
 
 
