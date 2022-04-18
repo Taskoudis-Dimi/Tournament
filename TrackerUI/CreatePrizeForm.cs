@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrackerLibrary;
+using TrackerLibrary.Models;
 
 // How do we got that connection information?
 // How do we connect to two different data sources to do the same task?
@@ -28,15 +29,24 @@ namespace TrackerUI
             if (ValidateForm())
             {
                 PrizeModel model = new PrizeModel(
-                    placeNameTextBox.Text, 
-                    placeNumberValue.Text, 
-                    prizeAmountTextBox.Text, 
+                    placeNameTextBox.Text,
+                    placeNumberValue.Text,
+                    prizeAmountTextBox.Text,
                     prizePercentageTextBox.Text);
 
-                foreach (DataConnection db in GlobalConfig.Connections)
+                foreach (DataConnection db in GlobalConfig.Connections) 
                 {
                     db.CreatePrize(model);
-                }
+                }    
+
+                placeNameTextBox.Text = "";
+                placeNumberValue.Text = "";
+                prizeAmountTextBox.Text = "0";
+                prizePercentageTextBox.Text = "0";
+            }
+            else
+            {
+                MessageBox.Show("This form has invalid information. Please check it and try again.");
             }
         }
 
