@@ -7,39 +7,74 @@ using System.Threading.Tasks;
 using TrackerLibrary.Models;
 using System.Data.SqlClient;
 using Dapper;
+using TrackerLibrary.DataAccess;
+using System.Data;
 
 namespace TrackerLibrary
 {
-    public class SqlConnector : DataConnection
+    public class SqlConnector : IDataConnection
     {
-        // TODO - Make the CreatePrize method actually save to database
-        //Αποθήκευση ενός new prize στη database
-        public PrizeModel CreatePrize(PrizeModel model)
+        private const string db = "Tournaments";
+
+        public void CompleteTournament(TournamentModel model)
         {
-            using (DbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments"))) 
-            {
+            throw new NotImplementedException();
+        }
+
+        public void CreatePerson(PersonModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db))) {
                 var p = new DynamicParameters();
-                p.Add("@PlaceNumber", model.PlaceNumber);
-                p.Add("@PlaceName", model.PlaceName);
-                p.Add("@PlaceNumber", model.PlaceNumber);
-                p.Add("@PrizePercentage", model.PrizePercentage);
-                p.Add("@id", 0, dbType: System.Data.DbType.Int32, direction: System.Data.ParameterDirection.Output);
+                p.Add("@FirstName", model.FirstName);
+                p.Add("@LastName", model.LastName);
+                p.Add("@EmailAddress", model.EmailAddress);
+                p.Add("@CellphoneNumber", model.CellphoneNumber);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
+                connection.Execute("dbo.spPeople_Insert", p, commandType: CommandType.StoredProcedure);
 
-                //Θα εκτελεστεί το store procedure που όρισα στη db περνώντας όλες τις παραπάνω τιμές του p
-                connection.Execute("dbo.spPeople_Insert", p, commandType: System.Data.CommandType.StoredProcedure);
-
-
-
-                //Για να επιστρέψω τις τιμές απο τη βάση δεδομένων κάνω τα παρακάτω
                 model.Id = p.Get<int>("@id");
-                return model;
             }
+        }
 
+        public void CreatePrize(PrizeModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateTeam(TeamModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateTournament(TournamentModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PersonModel> GetPerson_All()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TeamModel> GetTeamAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TournamentModel> GetTournament_All()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateMatchup(MatchupModel model)
+        {
+            throw new NotImplementedException();
         }
 
 
-
+        ////Για να επιστρέψω τις τιμές απο τη βάση δεδομένων κάνω τα παρακάτω
+        //model.Id = p.Get<int>("@id");
 
 
 
