@@ -71,10 +71,10 @@ namespace TrackerUI
             {
                 return false;
             }
-            if (emailValue.Text.Length == 0)
-            {
-                return false;
-            }
+            //if (emailValue.Text.Length == 0)
+            //{
+            //    return false;
+            //}
             if (cellphoneValue.Text.Length == 0)
             {
                 return false;
@@ -90,7 +90,7 @@ namespace TrackerUI
                 PersonModel p = new PersonModel();
                 p.FirstName = firstNameValue.Text;
                 p.LastName = lastNameValue.Text;
-                p.EmailAddress = emailValue.Text;
+                //p.EmailAddress = emailValue.Text;
                 p.CellphoneNumber = cellphoneValue.Text;
 
                 GlobalConfig.Connection.CreatePerson(p);
@@ -101,7 +101,7 @@ namespace TrackerUI
 
                 firstNameValue.Text = "";
                 lastNameValue.Text = "";
-                emailValue.Text = "";
+                //emailValue.Text = "";
                 cellphoneValue.Text = "";
             }
             else

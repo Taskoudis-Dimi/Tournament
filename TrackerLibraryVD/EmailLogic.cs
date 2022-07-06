@@ -7,7 +7,7 @@ namespace TrackerLibraryVD
     {
         public static void SendEmail(string to, string subject, string body)
         {
-            SendEmail(new List<string> { to }, new List<string>(), subject, body);
+            //SendEmail(new List<string> { to }, new List<string>(), subject, body);
         }
 
 

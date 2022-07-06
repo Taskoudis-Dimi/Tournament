@@ -111,7 +111,7 @@ namespace TrackerLibraryVD
 
             to = p.EmailAddress;
 
-            EmailLogic.SendEmail(to, subject, body.ToString());
+            //EmailLogic.SendEmail(to, subject, body.ToString());
         }
 
         private static int CheckCurrentRound(this TournamentModel model)
